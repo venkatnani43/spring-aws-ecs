@@ -4,10 +4,11 @@ phases:
   pre_build:
     commands:
       - mvn clean install
+      - cd $CODEBUILD_SRC_DIR
       - echo Logging in to Amazon ECR...
       - aws --version
       - REPOSITORY_URI=416793559122.dkr.ecr.us-east-1.amazonaws.com/javatechie-registry
-      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin $REPOSITORY_URI
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $REPOSITORY_URI
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
   build:
