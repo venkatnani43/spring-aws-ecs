@@ -4,7 +4,7 @@ phases:
   pre_build:
     commands:
       - mvn clean install
-      - cd $CODEBUILD_SRC_DIR
+      - cd /codebuild/output/src1338583579/src/github.com/venkatnani43/spring-aws-ecs.git
       - echo Logging in to Amazon ECR...
       - aws --version
       - REPOSITORY_URI=416793559122.dkr.ecr.us-east-1.amazonaws.com/javatechie-registry
